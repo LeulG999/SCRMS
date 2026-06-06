@@ -1,0 +1,71 @@
+<mxfile host="app.diagrams.net" modified="2026-06-05T21:20:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="scrms-solution-architecture" name="SCRMS Solution Architecture">
+    <mxGraphModel dx="1280" dy="720" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="presentationLayer" value="Presentation Layer" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontSize=15;fontStyle=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="80" y="50" width="1040" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="cli" value="&lt;b&gt;ScrmsCliApplication&lt;/b&gt;&lt;br&gt;- Shows menu&lt;br&gt;- Reads user choice&lt;br&gt;- Prints JSON output" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="presentationLayer">
+          <mxGeometry x="380" y="45" width="280" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="serviceLayer" value="Service Layer" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontSize=15;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="80" y="210" width="1040" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="registrationService" value="&lt;b&gt;RegistrationService&lt;/b&gt;&lt;br&gt;Business Logic&lt;br&gt;- Sort students by GPA&lt;br&gt;- Filter Gold students&lt;br&gt;- Sort courses by enrollment&lt;br&gt;- Calculate enrollment count" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=#82b366;" vertex="1" parent="serviceLayer">
+          <mxGeometry x="350" y="45" width="340" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="repositoryLayer" value="Repository Layer" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontSize=15;fontStyle=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="80" y="390" width="1040" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="studentRepository" value="&lt;b&gt;StudentRepository&lt;/b&gt;&lt;br&gt;In-memory student storage&lt;br&gt;List&amp;lt;Student&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=#d6b656;" vertex="1" parent="repositoryLayer">
+          <mxGeometry x="230" y="50" width="250" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="courseRepository" value="&lt;b&gt;CourseRepository&lt;/b&gt;&lt;br&gt;In-memory course storage&lt;br&gt;List&amp;lt;Course&amp;gt;" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=#d6b656;" vertex="1" parent="repositoryLayer">
+          <mxGeometry x="570" y="50" width="250" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="domainLayer" value="Domain Layer" style="swimlane;whiteSpace=wrap;html=1;startSize=30;fontSize=15;fontStyle=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="80" y="570" width="1040" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="studentEntity" value="&lt;b&gt;Student Entity&lt;/b&gt;&lt;br&gt;studentId&lt;br&gt;firstName&lt;br&gt;lastName&lt;br&gt;gpa&lt;br&gt;completedCredits" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=#b85450;" vertex="1" parent="domainLayer">
+          <mxGeometry x="155" y="50" width="230" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="courseEntity" value="&lt;b&gt;Course Entity&lt;/b&gt;&lt;br&gt;courseId&lt;br&gt;courseCode&lt;br&gt;title&lt;br&gt;creditHours" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=#b85450;" vertex="1" parent="domainLayer">
+          <mxGeometry x="405" y="50" width="230" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="academicLevelEnum" value="&lt;b&gt;AcademicLevel Enum&lt;/b&gt;&lt;br&gt;REGULAR&lt;br&gt;BRONZE&lt;br&gt;SILVER&lt;br&gt;GOLD" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;align=center;verticalAlign=middle;fillColor=#ffffff;strokeColor=#b85450;" vertex="1" parent="domainLayer">
+          <mxGeometry x="655" y="50" width="230" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="utility" value="&lt;b&gt;Utility&lt;/b&gt;&lt;br&gt;JsonUtil&lt;br&gt;Converts data to JSON" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;align=center;verticalAlign=middle;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="900" y="215" width="180" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="cliToService" value="uses" style="endArrow=block;html=1;rounded=0;fontSize=12;strokeWidth=2;" edge="1" parent="1" source="cli" target="registrationService">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="serviceToStudentRepo" value="reads" style="endArrow=block;html=1;rounded=0;fontSize=12;strokeWidth=2;" edge="1" parent="1" source="registrationService" target="studentRepository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="serviceToCourseRepo" value="reads" style="endArrow=block;html=1;rounded=0;fontSize=12;strokeWidth=2;" edge="1" parent="1" source="registrationService" target="courseRepository">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="studentRepoToStudent" value="stores" style="endArrow=block;html=1;rounded=0;fontSize=12;strokeWidth=2;" edge="1" parent="1" source="studentRepository" target="studentEntity">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="courseRepoToCourse" value="stores" style="endArrow=block;html=1;rounded=0;fontSize=12;strokeWidth=2;" edge="1" parent="1" source="courseRepository" target="courseEntity">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="studentToCourse" value="many-to-many" style="endArrow=none;html=1;rounded=0;fontSize=12;strokeWidth=2;" edge="1" parent="1" source="studentEntity" target="courseEntity">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="studentToLevel" value="calculates" style="endArrow=open;endFill=0;dashed=1;html=1;rounded=0;fontSize=12;" edge="1" parent="1" source="studentEntity" target="academicLevelEnum">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="cliToJson" value="formats output" style="endArrow=block;html=1;rounded=0;fontSize=12;strokeWidth=2;dashed=1;" edge="1" parent="1" source="cli" target="utility">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
+
